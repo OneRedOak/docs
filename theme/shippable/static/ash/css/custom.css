@@ -1,0 +1,51 @@
+h1 {
+	font-size: 30px;
+}
+
+h2 {
+	font-size: 22px;
+}
+
+a.headerlink {
+	color: #ffffff;
+}
+
+.codeExampleTitle {
+	display: inline-block;
+	color: #ffffff;
+	padding: 5px 15px;
+	font-size: 13px;
+}
+
+.codeExampleTitle:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+#docs #guide {
+	width: 235px;
+}
+
+#docs #api-docs {
+	margin-left: 235px;
+}
+
+.highlight pre {
+	background: none;
+	border: none;
+	color: #ffffff;
+	margin-left: 100%; 
+    width: 100%; 
+    padding: 10px 30px 0; 
+    padding-left: 45px;
+    padding right: -10%;
+    box-shadow: inset 0px 1px rgba(255, 255, 255, 0.17); color: #fff;
+}
+
+#headerLogo {
+	width: 90%;
+}
+
+.current ul {
+	padding-right: 5px;
+}

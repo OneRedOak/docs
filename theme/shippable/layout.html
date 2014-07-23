@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{{ meta['title'] if meta and meta['title'] else title }} - Shippable Documentation</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />	
+	<title>{{ meta['title'] if meta and meta['title'] else title }} - Shippable Documentation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{{ meta['description'] if meta }}" />
     <meta name="keywords" content="{{ meta['keywords'] if meta }}" />
 
@@ -15,53 +17,35 @@
       {% set github_tag = current_version %}
     {% endif %}
 
+	<!-- stylesheets -->
+	<link rel="stylesheet" type="text/css" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+	{%- set css_files = css_files + ['_static/ash/css/compiled/theme.css'] %}
+	{%- set css_files = css_files + ['_static/ash/css/vendor/animate.css'] %}
+	{%- set css_files = css_files + ['_static/ash/css/custom.css'] %}
 
-    <!-- Mobile Specific Metas
-    ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!-- CSS
-    ================================================== -->
-    <!-- web font  -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,800" rel="stylesheet" type="text/css">
-    
-
-    {%- set css_files = css_files + ['_static/ash/bootstrap/css/bootstrap.min.css'] %}
-    {%- set css_files = css_files + ['_static/ash/font-icons/custom-icons/css/custom-icons.css'] %}
-    {%- set css_files = css_files + ['_static/ash/font-icons/custom-icons/css/custom-icons-ie7.css'] %}
-    {%- set css_files = css_files + ['_static/ash/css/layout.css'] %}
-    {%- set css_files = css_files + ['_static/ash/css/blue.css'] %}
-    {%- set css_files = css_files + ['_static/ash/css/main.css'] %}
-    {%- set css_files = css_files + ['_static/ash/css/font-awesome.min.css'] %}
-    {%- set css_files = css_files + ['_static/ash/font-icons/custom-icons/css/custom-icons.css'] %}
-    {%- set css_files = css_files + ['_static/ash/font-icons/custom-icons/css/custom-icons-ie7.css'] %}
-
-
-    {%- for cssfile in css_files %}
+	{%- for cssfile in css_files %}
         <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
     {%- endfor %}
 
+	<!-- javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 
     {%- set script_files =
-    ['_static/ash/js-plugin/jquery/1.8.3/jquery.min.js']
-    + ['_static/ash/js/modernizr-2.6.1.min.js']
-    + ['_static/ash/bootstrap/js/bootstrap.js']
-    + ['_static/ash/js-plugin/jquery-ui/jquery-ui-1.8.23.custom.min.js']
+    ['_static/ash/js/theme.js']
+    + ['_static/ash/js/bootstrap/bootstrap.min.js']
     %}
 
     {%- for scriptfile in script_files if scriptfile != '_static/jquery.js' %}
         <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
     {%- endfor %}
 
-    <!-- Favicons
-    ================================================== -->
+    <!-- Favicons -->
     <link rel="shortcut icon" href="{{ pathto('_static/ash/images/favicon.ico', 1) }}">
-    <link rel="apple-touch-icon" href="{{ pathto('_static/ash/images/apple-touch-icon.png', 1) }}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ pathto('_static/ash/images/apple-touch-icon-72x72.png', 1) }}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ pathto('_static/ash/images/apple-touch-icon-114x114.png', 1) }}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ pathto('_static/ash/images/apple-touch-icon-144x144.png', 1) }}">
 
-
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
     <script type="text/javascript">
         // This is included here for Javascript that doesn't have access to the templates.
@@ -97,132 +81,51 @@
         ga('send', 'pageview');
     </script>
     <!-- End of Google Analytics Code -->
-    
 </head>
 
-<body data-spy="scroll" data-target="#scrollTarget" data-offset="150">
-    <div id="globalWrapper" class="localscroll">
-        <header id="mainHeader" class="navbar-fixed-top" role="banner">
-            <div class="container">
-                <nav class="navbar navbar-default scrollMenu" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> 
-                            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> 
-                            <span class="icon-bar"></span> <span class="icon-bar"></span> 
-                        </button>
-                        <a class="navbar-brand" href="http://www.shippable.com" title="Shippable Homepage"><img src="{{ pathto('_static/ash/images/main-logo.png', 1) }}" alt="Shippable logo"/></a> 
-                    </div>
-                    <div class="collapse navbar-collapse navbar-ex1-collapse pull-right" id="scrollTarget">
-                        <ul class="nav navbar-nav">
-                            <li><a href="http://www.shippable.com"><i class="icon-home-outline"></i>Home</a> </li>
-                            <li><a href="http://blog.shippable.com" target="_blank"><i class="icon-edit"></i>Blog</a> </li>
-                            <li class="active"><a href="http://docs.shippable.com" target="_blank"><i class="icon-info"></i>Docs</a> </li>
-                            <li><a href="https://github.com/Shippable/support" target="_blank"><i class="icon-thumbs-up"></i>Support</a> </li>
-                            <li><a data-target="#signupModal" data-toggle="modal" href="#signup"><i class="icon-right"></i>Sign In</a> </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
+<body id="docs" data-spy="scroll" data-target="#guide">
+	<div id="guide">
+		<h1 class="logo">
+			<a href="index.html"><img src="{{ pathto('_static/ash/images/main-logo-inverted-hidpi.png', 1) }}" alt="Shippable Logo" id="headerLogo"/></a>
+		</h1>
+		{{ toctree(collapse=False, maxdepth=2) }}
+	</div>
 
-        <!-- content -->
-        <section style="background-color: #3E6D92">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7 col-sm-6"></div>
-                </div>
-            </div>
-        </section>
-        <section class="mt15">
-            <div class="container">
-                <div class="col-sm-4 sidebar bs-docs-sidebar">
-                    <div id="search-bar">
-                        <gcse:searchbox></gcse:searchbox>
-                    </div>
-                    {{ toctree(collapse=False, maxdepth=3) }}
-                </div>
+	<div id="api-docs">
+		<div id="methods">
+			<div class="languages">
+				<h4 class="codeExampleTitle">Code Examples</h4>
+			</div>
+			<div class="method" id="intro">
+				<div class="method-section clearfix">
+					<div class="method-description">
+						{% block body %}{% endblock %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                <!-- body block -->
-                <div class="col-sm-8">
+	<script type="text/javascript">
+		$(function () {
+			hljs.configure({
+			  tabReplace: '  ',
+			  classPrefix: ''
+			})
+			hljs.initHighlightingOnLoad();
 
-                    <!-- Main section
-                    ================================================== -->
-                    <div id="search-results">
-                        <gcse:searchresults></gcse:searchresults>
-                    </div>
-                    <section id="global" class="containerblock">
-                        {% block body %}{% endblock %}
-                    </section>
-                </div>
-                <div class="pull-right">
-                    <a href="https://github.com/Shippable/docs/blob/master/sources/{{ pagename }}.rst" title="edit this article">Edit this article on GitHub</a>
-                </div>
-            </div>
-        </section>
+			// language toggle
+			var $languages = $(".languages .language");
+			$languages.click(function (e) {
+				e.preventDefault();
+				var lang = $(this).data("lang");
+				$languages.removeClass("selected");
+				$(this).addClass("selected");
 
-        <div id="wrap">
-            <div id="push-the-footer"></div>
-            <section style="background-color: #3E6D92">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-7 col-sm-6"></div>
-                    </div>
-                </div>
-            </section>
-            <section id="footerRights">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p>Copyright © 2014 <a href="http://www.shippable.com" target="blank">Shippable Inc.</a> / All rights reserved.</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <ul class="socialNetwork pull-right">
-                                <li><a href="https://www.facebook.com/beShippable" class="tips" title="follow us on Facebook" target="_blank" data-original-title="follow us on Facebook"><i class="icon-facebook-1 iconRounded"></i></a></li>
-                                <li><a href="https://twitter.com/beShippable" class="tips" title="follow us on Twitter" target="_blank" data-original-title="follow us on Twitter"><i class="icon-twitter-bird iconRounded"></i></a></li>
-                                
-                                <li><a href="http://www.linkedin.com/company/shippable" class="tips" title="follow us on Linkedin" target="_blank" data-original-title="follow us on Linkedin"><i class="icon-linkedin-1 iconRounded"></i></a></li>
-                            </ul>     
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div> <!-- end wrap for pushing footer -->
-    </div>
-
-    <!--Modals-->
-    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-      	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h3>Signup/Login</h3>
-                                <p>Signup for a new account or login with:</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <a href="https://www.shippable.com/auth/github" class="signup-cta">
-                                    <i class="fa fa-github"></i>Github
-                                </a>											
-                            </div>
-                            <div class="col-sm-6">
-                                <a href="https://www.shippable.com/auth/bitbucket" class="signup-cta">
-                                    <i class="fa fa-bitbucket"></i>BitBucket
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                </div>      
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="{{ pathto('_static/ash/js/docs.js', 1) }}"></script>
-    <script type="text/javascript" src="{{ pathto('_static/ash/js/custom.js', 1) }}"></script>
+				$("pre code").hide();
+				$("pre code." + lang).css("display", "block");
+			});
+		});
+	</script>
 </body>
 </html>
